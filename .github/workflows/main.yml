@@ -1,12 +1,11 @@
-name:workflow
+name: workflow
 
-on:[push]
+on: [push]
 
 jobs:
   hello:
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      -name:print msg
-      runs:|
-        echo:"HELLO ${{ VARS.NAME }}"
-        
+      - name: print msg
+        run: |
+          echo "HELLO ${{ vars.NAME }}"
