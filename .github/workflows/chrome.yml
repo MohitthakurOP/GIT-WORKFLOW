@@ -1,0 +1,32 @@
+name: Install Google Chrome on Ubuntu Server
+
+on:
+  workflow_dispatch:
+    inputs:
+      server:
+        description: "Target server hostname or IP"
+        required: true
+      user:
+        description: "SSH username"
+        required: true
+
+jobs:
+  install-chrome:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Google Chrome on server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ github.event.inputs.server }}
+          username: ${{ github.event.inputs.user }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Downloading and installing Google Chrome..."
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
+            sudo apt-get update
+            sudo apt-get install -y /tmp/chrome.deb || sudo apt-get install -fy
+            echo "Google Chrome installed successfully."
