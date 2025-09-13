@@ -1,4 +1,4 @@
-name: Install XAMPP on Ubuntu Server
+name: Install appache on Ubuntu Server
 
 on:
   workflow_dispatch:
@@ -11,25 +11,25 @@ on:
         required: true
 
 jobs:
-  install-xampp:
+  install-apache:
     runs-on: self-hosted
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install XAMPP on server
+      - name: Install apache on server
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ github.event.inputs.server }}
           username: ${{ github.event.inputs.user }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            echo "Downloading and installing XAMPP..."
+            echo "Downloading and installing acpache..."
             apt-get update && apt-get install -y curl
             chmod +x /tmp/xampp-linux-x64-8.0.30-0-installer.run
             sudo /tmp/xampp-linux-x64-8.0.30-0-installer.run --mode unattended
-            echo "XAMPP installed successfully."
-            # Start XAMPP service
+            echo "apache installed successfully."
+            # Start apache service
             sudo /opt/lampp/lampp start
-            echo "XAMPP started."
+            echo "apache started."
