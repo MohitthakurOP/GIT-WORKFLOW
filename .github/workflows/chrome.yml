@@ -12,7 +12,7 @@ on:
 
 jobs:
   install-chrome:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
@@ -28,5 +28,5 @@ jobs:
             echo "Downloading and installing Google Chrome..."
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
             sudo apt-get update
-            sudo apt-get install -y /tmp/chrome.deb || sudo apt-get install -fy
+            sudo dpkg -i /tmp/chrome.deb || sudo apt-get install -fy
             echo "Google Chrome installed successfully."
