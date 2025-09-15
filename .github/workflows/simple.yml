@@ -1,0 +1,26 @@
+name: Simple SSH Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ssh-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Connect to remote server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SECRET_KEY01  }}
+          port: 22
+          script: |
+            echo "Connected successfully!"
+            hostname
+            pwd
+            ls -l
