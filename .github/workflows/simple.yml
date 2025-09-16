@@ -16,7 +16,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SECRET_KEY01  }}
+          key: ${{ secrets.SSH_PRIVATE_KEY  }}
           port: 22
           script: |
             echo "Connected successfully!"
