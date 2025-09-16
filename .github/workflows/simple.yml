@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   ssh-job:
     runs-on: ubuntu-latest
