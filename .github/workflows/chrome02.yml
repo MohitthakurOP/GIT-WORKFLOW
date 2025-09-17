@@ -26,9 +26,17 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Downloading and installing Google Chrome..."
-            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
-            sudo apt-get update
-            sudo dpkg -i /tmp/chrome.deb || apt-get install -fy
+            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
+            sudo apt-get update -y
+            sudo dpkg -i /tmp/chrome.deb || sudo apt-get install -fy
             echo "Google Chrome installed successfully."
 
-            
+            echo "Checking Chrome version..."
+            if command -v google-chrome-stable >/dev/null 2>&1; then
+              google-chrome-stable --version
+            elif command -v google-chrome >/dev/null 2>&1; then
+              google-chrome --version
+            else
+              echo "❌ Chrome binary not found in PATH"
+              exit 1
+            fi
