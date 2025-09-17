@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   ssh-job:
-    runs-on: self_hosted
+    runs-on: mohit_runner
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
