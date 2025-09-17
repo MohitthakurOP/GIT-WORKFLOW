@@ -12,7 +12,7 @@ on:
 
 jobs:
   install-chrome:
-    runs-on: [ ubuntu-latest, mohit_runner ]
+    runs-on: [self-hosted, mohit_runner]
 
     steps:
       - name: Checkout repo
