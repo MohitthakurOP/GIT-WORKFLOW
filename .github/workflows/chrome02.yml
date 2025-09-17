@@ -12,7 +12,7 @@ on:
 
 jobs:
   install-chrome:
-    runs-on: ubuntu-latest
+    runs-on: [ ubuntu-latest, mohit_runner ]
 
     steps:
       - name: Checkout repo
@@ -23,7 +23,7 @@ jobs:
         with:
           host: ${{ github.event.inputs.server }}
           username: ${{ github.event.inputs.user }}
-          key: ${{ secrets.SECRET_KEY01 }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Downloading and installing Google Chrome..."
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/chrome.deb
