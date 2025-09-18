@@ -52,10 +52,10 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          echo "${{ secrets.SERVER_SSH_KEY }}" > id_rsa
+          printf "%s" "${{ secrets.SERVER_SSH_KEY }}" > id_rsa
           chmod 600 id_rsa
           ssh -o StrictHostKeyChecking=no -i id_rsa \
-            ${{ github.event.inputs.server_user }}@${{ github.event.inputs.server_ip }} "echo Connected OK"
+          ${{ github.event.inputs.server_user }}@${{ github.event.inputs.server_ip }} "echo Connected OK"
 
       - name: Copy artifact to server
         uses: appleboy/scp-action@v0.1.7
