@@ -52,7 +52,55 @@ jobs:
 
       - name: Test SSH connection
         run: |
-          printf "%s" "${{ secrets.SERVER_SSH_KEY }}" > id_rsa
+          printf "%s"-----BEGIN OPENSSH PRIVATE KEY-----
+          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
+          -----END OPENSSH PRIVATE KEY-----"${{ secrets.SERVER_SSH_KEY }}" > id_rsa
           chmod 600 id_rsa
           ssh -o StrictHostKeyChecking=no -i id_rsa \
           ${{ github.event.inputs.server_user }}@${{ github.event.inputs.server_ip }} "echo Connected OK"
