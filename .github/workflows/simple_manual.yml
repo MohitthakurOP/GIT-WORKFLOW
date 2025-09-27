@@ -1,0 +1,20 @@
+on:
+  push:
+    branches: [ "main" ]   # only triggers build on push
+  workflow_dispatch:       # allows manual triggers for deploy
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      # your build steps
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch'   # only runs on manual trigger
+    runs-on: self-hosted
+    steps:
+      - name: Deploy to XAMPP
+        run: |
+          echo "Your deploy commands here"
