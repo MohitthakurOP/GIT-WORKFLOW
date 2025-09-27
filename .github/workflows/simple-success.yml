@@ -16,8 +16,12 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY  }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          timeout: 30s
+          command_timeout: 10m
+          proxy_port: 22
+          proxy_timeout: 30s
           script: |
             echo "Connected successfully!"
             hostname
